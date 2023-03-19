@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Paula's recipes</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <%= link_to 'My Recipes', root_path %>
+      </h1>
+      <nav>
+        <% if user_signed_in? %>
+          <div style="display: flex; align-items: start;">
+            <p style="margin-right: 2rem;">Welcome <%= current_user.email %></p>
+            <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
+            <p style="margin-left: 1rem; width: 10px; height: 10px; border-radius: 50%; background-color: #30FF24"></p>
+          </div>
+        <% else %>
+          <div style="display: flex; align-items: start;">
+            <%= link_to 'Login', new_user_session_path %>
+            <p style="margin-left: 1rem; width: 10px; height: 10px; border-radius: 50%; background-color: #FF0000"></p>
+          </div>
+        <% end %>
+      </nav>
+    </header>
+    <section>
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :dialog, msg, role: name %>
+      <% end %>
+    </section>
+    <%= yield %>
+    <footer>
+      Developed by -  <a href="https://www.chavazystem.tech">ChavaZystem Tech ™</a>
+    </footer>
+  </body>
+</html>

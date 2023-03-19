@@ -1,0 +1,4 @@
+hopper:
+  email: hopper@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, '12345678') %>
+  created_at: <%= 10.days.ago.strftime("%Y-%m-%d %H:%M:%S") %>

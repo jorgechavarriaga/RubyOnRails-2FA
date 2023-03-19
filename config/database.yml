@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: admindb
+  password: Movies@2023-Ruby
+  host: localhost
+
+development:
+  <<: *default
+  database: my_recipes
+
+test:
+  <<: *default
+  database: my_recipes_test
+
+production:
+  <<: *default
+  database: my_recipes_production
